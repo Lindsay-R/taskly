@@ -17,4 +17,30 @@ feature 'Task lists' do
     expect(page).to have_content("Household Chores")
   end
 
+  scenario 'Anonymous user can view about page' do
+    visit signin_path
+    click_on "About"
+    expect(page).to have_content("About")
+  end
+
+  scenario 'User can add a task list' do
+    create_user email: "user@example.com"
+    TaskList.create!(name: "Work List")
+    TaskList.create!(name: "Household Chores")
+
+    visit signin_path
+    fill_in "Email", with: "user@example.com"
+    fill_in "Password", with: "password"
+    click_on "Login"
+    expect(page).to have_content("Work List")
+    expect(page).to have_content("Household Chores")
+
+    click_on "Add Task List"
+    fill_in "Name", with: "Lindsay"
+    click_on "Create Task List"
+    expect(page).to have_content("Task List was created successfully!")
+    expect(page).to have_content("Task List")
+
+  end
+
 end
