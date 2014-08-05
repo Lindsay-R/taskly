@@ -62,22 +62,27 @@ feature 'Task lists' do
 
   scenario 'User can edit a task list' do
     create_user email: "user@example.com"
-    TaskList.create!(name: "Work List")
 
     visit signin_path
     fill_in "Email", with: "user@example.com"
     fill_in "Password", with: "password"
     click_on "Login"
     expect(page).to have_content("My Lists")
-    expect(page).to have_content("Work List")
 
+    click_on "Add Task List"
+    fill_in "Name", with: "Lindsay has a task list"
+    click_on "Create Task List"
+    expect(page).to have_content("Task List was created successfully!")
+    expect(page).to have_content("Lindsay has a task list")
     click_on "Edit"
+
     expect(page).to have_content("Edit a task list")
-    expect(page).to have_content("Work List")
-    fill_in "Name", with: "Household Chores"
+    fill_in "Name", with: "new task list"
+
     click_on "Update Task List"
-    expect(page).to have_content("Your task list was successfully updated!")
-    expect(page).to have_content("Household Chores")
+    # save_and_open_page
+    expect(page).to have_content("new task list")
+    expect(page).to have_content("Task List was updated successfully!")
   end
 
 end

@@ -1,6 +1,6 @@
 <h2>Edit a task list</h2>
 
-<%= form_for @task_list, url: '/:id', html: { class: "signin-form" } do |f| %>
+<%= form_for @task_list, url: id_path, html: { class: "signin-form" } do |f| %>
 
   <% f.object.errors.full_messages.each do |error| %>
     <div class="errors">

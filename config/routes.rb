@@ -10,6 +10,6 @@ Rails.application.routes.draw do
   post "new" => "task_lists#create"
 
   get '/:id/edit', to: 'task_lists#edit'
-  patch '/:id', to: 'task_lists#update'
+  patch '/:id', to: 'task_lists#update', as: :id
   delete '/:id', to: 'task_lists#destroy'
 end
