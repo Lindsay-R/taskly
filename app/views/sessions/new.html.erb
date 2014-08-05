@@ -1,10 +1,10 @@
 <%= form_for @user, url: signin_path, html: { class: "signin-form" } do |f| %>
   <% f.object.errors.full_messages.each do |error| %>
-    <div class="errors">
-      <%= error %>
-    </div>
-  <% end %>
-  <div>
+      <div class="errors">
+        <%= error %>
+      </div>
+    <% end %>
+    <div>
     <%= f.label :email %>
     <%= f.email_field :email, autofocus: true %>
   </div>

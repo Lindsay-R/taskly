@@ -6,5 +6,6 @@ Rails.application.routes.draw do
 
   get "about" => "about#about"  #controler/method(aka. action)
 
-  get "new" => "task_lists#new", as: :task_lists_new
+  get "new" => "task_lists#new", as: :new
+  post "new" => "task_lists#create"
 end
