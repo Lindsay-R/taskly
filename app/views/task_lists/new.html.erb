@@ -1,7 +1,7 @@
 <h2>Add a task list</h2>
 
 
-<%= form_for @task, url: task_path, html: {class: "signin-form"} do |f| %>
+<%= form_for @task_list, url: task_lists_new_path, html: { class: "signin-form" } do |f| %>
 
 <div>
   <%= f.label :name %>
@@ -10,4 +10,5 @@
 <div>
   <%= f.submit "Create Task List" %>
 </div>
+
 <% end %>
