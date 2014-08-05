@@ -78,11 +78,33 @@ feature 'Task lists' do
 
     expect(page).to have_content("Edit a task list")
     fill_in "Name", with: "new task list"
-
     click_on "Update Task List"
     # save_and_open_page
     expect(page).to have_content("new task list")
     expect(page).to have_content("Task List was updated successfully!")
+  end
+
+  scenario 'User can add a task' do
+    create_user email: "user@example.com"
+
+    visit signin_path
+    fill_in "Email", with: "user@example.com"
+    fill_in "Password", with: "password"
+    click_on "Login"
+    expect(page).to have_content("My Lists")
+
+    click_on "Add Task List"
+    fill_in "Name", with: "ToDo"
+    click_on "Create Task List"
+    expect(page).to have_content("Task List was created successfully!")
+    expect(page).to have_content("ToDo")
+
+    click_on "New Task"
+    fill_in "Description", with: "walk the dog"
+    click_on "Create Task"
+    expect(page).to have_content("Task was created successfully!")
+    expect(page).to have_content("ToDo")
+
   end
 
 end
