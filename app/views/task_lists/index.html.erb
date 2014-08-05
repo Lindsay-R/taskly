@@ -1,4 +1,4 @@
-<h1>My Lists</h1><%= link_to "+ Add Task List", new_path %>
+<h1>My Lists</h1><%= link_to "+ Add Task List", new_path %> <br>
 
 
 
@@ -6,7 +6,9 @@
 <% @task_lists.each do |task_list| %>
 
   <section class="task-list">
-    <h1><%= task_list.name %></h1>
+    <h1><%= task_list.name %> <%= link_to "Edit", "#{task_list.id}/edit"%> </h1>
+
+
   </section>
 
 <% end %>

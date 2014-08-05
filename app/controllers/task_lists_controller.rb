@@ -5,7 +5,7 @@ class TaskListsController < ApplicationController
   end
 
   def show
-    @task_lists = TaskList.find(params:id)
+    @task_list = TaskList.find(params:id)
   end
 
   def new
@@ -26,7 +26,22 @@ class TaskListsController < ApplicationController
   end
 
   def edit
-    @task_lists = TaskList.find(params:id)
+    @task_list = TaskList.find(params[:id])
+  end
+
+  def update
+    @task_list = TaskList.find(params[:id])
+    if @task_list.update(name: params[:task_list][:name])
+      redirect_to root_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @task_list = TaskList.find(params[:id])
+    @task_list.destroy
+    redirect_to root_path
   end
 
 
