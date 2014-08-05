@@ -20,6 +20,7 @@ class TaskListsController < ApplicationController
       flash[:notice]= "Task List was created successfully!"
 
     else
+      @task_list.errors[:base] << "Your task could not be created"
       render :new
     end
   end
