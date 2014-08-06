@@ -1,1 +1,28 @@
-<h2>Add a task</h2>
+<h2>Create a new task</h2>
+
+
+
+<%= form_for @task, html: { class: "task-form" }  do |f| %>
+
+  <% f.object.errors.full_messages.each do |error| %>
+    <div class="errors">
+      <%= error %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+
+  <div>
+    <%= f.label :date %>
+    <%= f.date_select :date %>
+  </div>
+
+  <div>
+    <%= f.submit "Create Task"  %>
+  </div>
+
+<% end %>
+
