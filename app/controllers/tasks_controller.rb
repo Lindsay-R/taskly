@@ -1,7 +1,10 @@
 class TasksController < ApplicationController
 
-
   def new
+    # @task.task_list_id = @task_list.id
+    # @users = User.all
+
+    @task_list = TaskList.find(params[:task_list_id])
     @task = Task.new
   end
 
@@ -12,7 +15,10 @@ class TasksController < ApplicationController
       params[:task]["date(3i)"].to_i
     )
 
-    @task = Task.new(description: params[:task][:description], date: due_date)
+    # @task_list = TaskList.find(params[:task_list_id])
+    # @users = User.all
+    # @task.task_list_id = params[:task_list_id]
+    @task = Task.new(description: params[:task][:description], date: due_date, task_list_id: params[:task_list_id])
 
     if @task.save
       redirect_to root_path
@@ -20,6 +26,8 @@ class TasksController < ApplicationController
       flash[:notice]= "Task was created successfully!"
 
     else
+      @task_list = TaskList.find(params[:task_list_id])
+      # @users = User.all
       @task.errors[:base] << "Your task could not be created"
       render :new
     end

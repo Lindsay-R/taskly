@@ -1,8 +1,11 @@
-<h2>Create a new task</h2>
+<h2>Create a new task </h2>
 
 
 
-<%= form_for @task, html: { class: "task-form" }  do |f| %>
+<!--, html: { class: "task-form" }, url: new_task_list_tasks -->
+
+<%= form_for [@task_list, @task] do |f| %>
+
 
   <% f.object.errors.full_messages.each do |error| %>
     <div class="errors">
@@ -25,4 +28,3 @@
   </div>
 
 <% end %>
-
